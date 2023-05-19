@@ -1,0 +1,8 @@
+CREATE TABLE GroupChat(
+	groupID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	groupName TEXT NOT NULL,
+	groupDes TEXT NOT NULL,	
+	creator TEXT NOT NULL,			
+	creationDate TIMESTAMP, 
+	FOREIGN KEY(creator)REFERENCES Users(nickName)
+	);
