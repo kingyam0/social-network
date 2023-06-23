@@ -1,0 +1,170 @@
+#root{
+    width: 100%;
+}
+
+
+.posts{
+    background-color: #06257cbf;
+    border-radius: 3px;
+    padding: 7% 1% 5% 1%;
+    color: #f4f4f9;
+    font-family: cursive;
+    /* display: block; */
+    font-weight: bolder;
+    top: 30%;
+    position: fixed;
+    width: 72%;
+    height: 18%;
+}
+
+
+#textBoxPost{
+    margin-left: 5%;
+    margin-right: 14%;
+    background-color: #06004cb3;
+    line-height: 2;
+    width: 48%;
+    padding: 0;
+    color: azure;
+    font-weight: bolder;
+    font-family: cursive;
+    font-size: 1em;
+    position: fixed;
+    left: 20%;
+    top: 37%;
+}
+
+#Post_Cat{
+    display: block;
+    position: fixed;
+    top: 45.5%;
+    left: 25.5%;
+}
+
+#PostCat{
+    position: fixed;
+    left: 25.5%;
+    top: 50.5%;
+    background-color: #06004cb3;
+    color: white;
+    font-family: cursive;
+    font-size: large;
+    border: solid 1px;
+}
+
+#PostContent{
+    display: block;
+    position: fixed;
+    top: 62.5%;
+    left: 17.5%;
+}
+
+
+#textBoxPostCont{
+    display: block;
+    margin-left: 9%;
+    margin-right: 0%;
+    background-color: #06004cb3;
+    line-height: 2;
+    width: 48%;
+    padding: 0%;
+    color: azure;
+    font-weight: bolder;
+    font-family: cursive;
+    font-size: 1em;
+    top: 62%;
+    z-index: 2;
+    position: fixed;
+}
+
+.postsList{
+    background-image: url(../../images/bc.jpg);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    padding: 1% 1% 1% 1%;
+    color: #0e067c;
+    font-family: cursive;
+    width: 80%;
+    display: block;
+    font-weight: bolder;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.1;
+    align-items: start;
+    box-shadow: 2px 2px 10px 10px #0e067c;
+}
+
+#CreatePostTitle{
+    top: 21.3%;
+    width: 22.1%;
+    height: 5.7%;
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-size: 2em;
+    position: fixed;
+    font-weight: bolder;
+    padding: 0;
+    left: 38%;
+}
+
+#addPostIcon {
+    height: 9%;
+    width: 7%;
+    padding-top: 1%;
+    left: 76%;
+    position: fixed;
+
+}
+
+#PhotoUp {
+    position: fixed;
+    left: 45.5%;
+    top: 50.5%;
+    background-color: #06004cb3;
+    color: white;
+    font-family: cursive;
+    font-size: large;
+}
+
+#PostPhotoUp {
+    display: block;
+    position: fixed;
+    top: 45.5%;
+    left: 45.8%;
+}
+
+#photoShow{
+    height: 10%;
+    width: 10%;
+    z-index: 5;
+    position: fixed;
+    left: 76%;
+    top: 37%;
+}
+
+#Privacy{
+    display: block;
+    position: fixed;
+    top: 45.5%;
+    left: 37.5%;
+}
+
+#postprivacy{
+position: fixed;
+left: 36.5%;
+top: 50.5%;
+background-color: #06004cb3;
+color: white;
+font-family: cursive;
+font-size: large;
+border: solid 1px;
+}
+
+#postTitle{
+    position: fixed;
+    top: 37.5%;
+    left: 17.5%;
+}

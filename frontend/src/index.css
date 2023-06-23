@@ -1,0 +1,301 @@
+body {
+  background-image: url('./images/bc.jpg');
+  background-size: 100%;
+  line-height: 1.5;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+.nav {
+  background-color: #0e067c90;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4.5%;
+  font-family: cursive;
+  font-size: 2rem;
+  border-right:  #0e067c;
+  line-height: 1;
+  padding-top: 2%;
+  padding-left: 0.7%;
+  z-index: 0;
+}
+
+.nav__link {
+display: block;
+text-decoration: none;
+font-weight: bolder;
+line-height: 1;
+
+}
+
+.headings {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #0e067c;
+  text-decoration: inherit;
+  position: fixed;
+  top: 22%;
+  left: 41%;
+}
+
+
+.form__label {
+  font-size: 1.2rem;
+  color: #0e067c;
+  text-decoration: inherit;
+}
+
+#loginBtn {
+  border-radius: 8px;
+  text-decoration: none;
+  position: fixed;
+  top: 45.5%;
+  left: 27.5%;
+  font-weight: bolder;
+  height: 19%;
+  width: 21%;
+}
+
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: inherit;
+  font-family: cursive;
+  background-color: #0e067c;
+  margin-top: 1%;
+  color:rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 2px 3px 2px 2px;
+  margin-left: 3%;
+}
+#submitBtn {
+  border-radius: 8px;
+  text-decoration: none;
+  position: fixed;
+  top: 64.5%;
+  left: 46.5%;
+  font-weight: bolder;
+  height: 7%;
+  width: 8%;
+}
+
+#submitBtnRegPage {
+  border-radius: 8px;
+  text-decoration: none;
+  position: relative;
+  font-weight: bolder;
+  height: 42px;
+  width: 97px;
+  padding-top: 1%;
+}
+
+#logBtnRegPage {
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  position: fixed;
+  top: 0.5%;
+  left: 92.5%;
+  font-weight: bolder;
+  height: 7%;
+  width: 7%;
+}
+
+#regBtnLogPage {
+  border-radius: 8px;
+  text-decoration: none;
+  position: fixed;
+  top: 0.5%;
+  left: 91.5%;
+  font-weight: bolder;
+  height: 7%;
+  width: 8%;
+}
+
+#regBtn {
+  border-radius: 8px;
+  text-decoration: none;
+  position: fixed;
+  top: 45.5%;
+  left: 48.5%;
+  font-weight: bolder;
+  height: 19%;
+  width: 21%;
+}
+
+.homeDiv{
+  padding: 3px 3px 3px 3px;
+  margin-top: 20%;
+  height: 27%;
+  position: fixed;
+  top: -17%;
+  left: 43%;
+  width: 8%;
+}
+
+#welcomeBanner{
+  height: 24%;
+  position: fixed;
+  width: 41%;
+  top: 18%;
+  left: 26.5%;
+}
+
+
+.login-wrapper{
+  padding: 3px 3px 3px 3px;
+  margin-top: 0%;
+  border-radius: 15px;
+  border: solid 10px;
+  border-color: #0e067c;
+  position: fixed;
+  top: 34%;
+  left: 28.5%;
+  width: 43%;
+  padding-bottom: 3%;
+}
+
+
+#textBox{
+  background-color:#0e067c;
+  line-height: 2;
+  width: 70%;
+  padding:0;
+  color:azure;
+  font-weight: bolder;
+  font-family: cursive;
+  font-size: 1em;
+}
+
+.form__input{
+  background-color:#0e067c;
+  line-height: 2;
+  width: 70%;
+  padding:0;
+  color:azure;
+  font-weight: bolder;
+  font-family: cursive;
+  font-size: 1em;
+}
+
+
+
+img{
+  height: 100%;
+  width: 100%;
+  
+}
+
+#avaImg{
+ color:#0e067c;
+ width: 2%;
+ margin-right:2%;
+}
+
+#welcome{
+  top: 2.3%;
+  width: 14.5%;
+  height: 4.2%;
+  background-color: #0e067c;
+  color: #f3f3f6;
+  font-family: cursive;
+  font-size: 1em;
+  position: fixed;
+  font-weight: bolder;
+  left: 34%;
+}
+
+#logo{
+    top: 0.3%;
+      width: 13.25%;
+      height: 4.2%;
+      color: #f3f3f6;
+      font-family: cursive;
+      font-size: 1em;
+      position: fixed;
+      font-weight: bolder;
+}
+
+#logo2 {
+  top: 4.3%;
+  width: 13.25%;
+  height: 4.2%;
+  color: #f3f3f6;
+  font-family: cursive;
+  font-size: 1em;
+  position: fixed;
+  font-weight: bolder;
+  left: 3%;
+}
+
+.SocialNetwork {
+  color: #0e067c5a;
+  font-family: cursive;
+  font-weight: bolder;
+  box-shadow: 2px 2px 10px 10px #0e067c;
+  border-color: #0e067c;
+  margin-left: -15%;
+  margin-right: 9%;
+  margin-bottom: 4%;
+  z-index: 7;
+  position: fixed;
+  height: 6%;
+  width: 30%;
+  font-size: 2.17em;
+  background-color: white;
+}
+
+.SocialNetwork:hover {
+    color: #f5f0ef;
+  box-shadow: 2px 2px 10px 10px #fdfdfd;
+  background-color: #0e067c;
+
+    font-family: cursive;
+    font-weight:bolder;
+}
+
+.header2 {
+  background-color: #0e067c;
+  font-size: 3.7em;
+  color: #f2f1f7;
+  width: 13%;
+  height: 11%;
+  margin-top: -10%;
+  left: 41.5%;
+  position: fixed;
+  right: 0;
+  font-weight: bolder;
+  font-family: cursive;
+  position: fixed;
+  top: 24%;
+}
+.header3{
+  background-color: #0e067c;
+  font-size: 3.7em;
+  color: #f2f1f7;
+  width: 13%;
+  height: 11%;
+  margin-top: -10%;
+  left: 47.5%;
+  position: fixed;
+  right: 0;
+  font-weight: bolder;
+  font-family: cursive;
+  position: fixed;
+  top: 34%;
+}
+
+#backBtn {
+  height: 10%;
+  width: 5%;
+  z-index: 5;
+  position: fixed;
+  left: 68.5%;
+  top: -1%;
+}

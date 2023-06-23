@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS "Posts"
+DROP TABLE Posts

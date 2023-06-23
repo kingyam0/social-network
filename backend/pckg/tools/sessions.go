@@ -14,7 +14,7 @@ func (data *DB) InsertSession(sess UserSession) {
 	if err != nil {
 		fmt.Println("Error inserting session into table:", err)
 	}
-	// fmt.Println("Are we getting here////////////////////////////////////////////////////////////////////////////////////////////")
+	fmt.Println("Are we getting here////////////////////////////////////////////////////////////////////////////////////////////")
 	defer stmnt.Close()
 	
 	stmnt.Exec(sess.session, sess.userID, sess.username)

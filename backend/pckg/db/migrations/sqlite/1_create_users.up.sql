@@ -6,7 +6,9 @@ CREATE TABLE Users(
 				email TEXT NOT NULL UNIQUE, 
 				dob TEXT NOT NULL,
 				aboutMe TEXT,
-				avatar VARCHAR(2083),
+				avatar VARCHAR
+(2083),
 				loggedIn TEXT,
-				passwordhash TEXT NOT NULL
+				passwordhash TEXT NOT NULL,
+				privacy TEXT DEFAULT 'public'
 				);

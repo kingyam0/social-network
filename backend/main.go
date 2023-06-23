@@ -22,7 +22,12 @@ func main() {
 	http.HandleFunc("/register", database.Register)
 	http.HandleFunc("/login", database.Login)
 	http.HandleFunc("/logout", database.LogoutUser)
-	// http.HandleFunc("/posts", tools.Posts)
+	http.HandleFunc("/posts", database.Post)
+	http.HandleFunc("/getLatestPosts", database.SendLatestPosts)
+	http.HandleFunc("/comments", database.Comments)
+	http.HandleFunc("/sendComments", database.SendComments)
+	http.HandleFunc("/checkCookie", database.CheckCookie)
+	http.HandleFunc("/chat", database.Chat)
 
 	// Create the hub that will manage the connections and communication with clients
 	hub := tools.NewHub(database)

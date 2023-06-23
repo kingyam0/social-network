@@ -1,111 +1,119 @@
 package tools
 
-// import (
-// 	"encoding/json"
-// 	"fmt"
-// 	"log"
-// 	"net/http"
-// 	"time"
-// )
+import (
+	"log"
+	"time"
+	"net/http"
+	"encoding/json"
+	"fmt"
+)
 
-// var thePost Post
+// Handles receiving the post data and adding it to the 'posts' table in the database
+func (data *DB) Post(w http.ResponseWriter, r *http.Request) {
+	SetUpCorsResponse(w)
 
-// var data *DB
+	// Decodes posts data into post variable
+	var post Post
+	// Decode the JSON data from the request body into the post variable
+	json.NewDecoder(r.Body).Decode(&post)
+	// w.WriteHeader(http.StatusOK)
+	w.Write([]byte("ok"))
+	// fetches current session value
+	x, err := r.Cookie("session_token")
+	if err != nil {
+		log.Fatal()
+	}
+	sessionvalue := x.Value
+	// Convert data into variables for easier use
+	postId := post.PostID
+	time := time.Now()
+	content := post.Content
+	category := post.Category
+	title := post.Title
+	sess := data.GetSession(sessionvalue)
+	photoUp := post.PhotoUp
+	privacy := post.Privacy
+	// Inserts post into the 'posts' table of the database
+	data.CreatePost(Post{
+		// username from current session
+		Author:  sess.username,
+		PostID: postId,
+		Content:   content,
+		Category: category,
+		Title:   title,
+		PhotoUp: photoUp,
+		Privacy: privacy,
+		CreationDate: time,
+	})
+}
 
-// func Posts(w http.ResponseWriter, r *http.Request) {
 
-// 	var postTime = time.Now()
+// Handles creation of new posts
+func (data *DB) CreatePost(post Post) {
+	fmt.Println(&post.PhotoUp)
+	stmt, err := data.DB.Prepare("INSERT INTO posts (author, title, content, category, creationDate, photoUp, privacy) VALUES (?, ?, ?, ?, ?, ?, ?);")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Uses data from post variable to insert into posts table
+	_, err = stmt.Exec(&post.Author, &post.Title, &post.Content, &post.Category, &post.CreationDate, &post.PhotoUp, &post.Privacy)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+// Pulls all posts from specific user and returns it as a slice of Post structs
+func (data *DB) GetPosts(username string) []Post {
+	// Used to store all of the posts
+	var posts []Post
+	// Used to store invidiual post data
+	var post Post
+	rows, err := data.DB.Query(`SELECT * FROM Posts WHERE author =?`, username)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Scans through every row where the username matches the username passed in
+	for rows.Next() {
+		// Populates post var with data from each post found in table
+		err := rows.Scan(&post.PostID, &post.Author, &post.Title, &post.Content, &post.Category, &post.CreationDate, &post.PhotoUp, &post.Privacy)
+		if err != nil {
+			log.Fatal(err)
+		}
+		// Adds each post found from specific user to posts slice
+		posts = append(posts, post)
+	}
+	return posts
+}
+func (data *DB) getLatestPosts() []Post {
+	// Used to store all of the posts
+	var posts []Post
+	// Used to store invidiual post data
+	var post Post
+	rows, err := data.DB.Query(`SELECT * FROM Posts`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Scans through every post
+	for rows.Next() {
+		// Populates post var with data from each post found in table
+		err := rows.Scan(&post.PostID, &post.Author, &post.Title, &post.Content, &post.Category, &post.CreationDate, &post.PhotoUp, &post.Privacy)
+		if err != nil {
+			log.Fatal(err)
+		}
+		// Adds each post found from specific user to posts slice
+		posts = append(posts, post)
+	}
+	return posts
+}
 
-// 	err := json.NewDecoder(r.Body).Decode(&thePost)
-
-// 	fmt.Println("=================", err)
-// 	fmt.Println(thePost, "WERE ARE GETTING HERE-=-=-=-=-=-=-=-=")
-
-// 	fmt.Println(CookieID, "this is the cookie I@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'")
-// 	var usr = GetUserByCookie(CookieID)
-
-// 	var usrID = usr.UserID
-
-// 	_, err = data.DB.Exec(`INSERT INTO Posts (
-// 		authorID,
-// 		author,
-// 		title,
-// 		content,
-// 		category,
-// 		creationDate,
-// 		cookieID
-// 		) VALUES(?,?,?,?,?,?,?)`, usrID, usr.NickName, thePost.Title, thePost.Content, thePost.Category, postTime, thePost.Cookie)
-// 	if err != nil {
-// 		fmt.Println("Error inserting into 'Posts' table: ", err)
-// 		return
-// 	}
-// }
-
-// func GetPosts() []Post {
-// 	var posts []Post
-// 	var myPost Post
-
-// 	rows, errPost := data.DB.Query("SELECT postID, author, category, title, content, creationDate FROM Posts;")
-// 	if errPost != nil {
-// 		fmt.Println("Error retrieving posts from database: \n", errPost)
-// 		return nil
-// 	}
-
-// 	for rows.Next() {
-// 		//copy row columns into corresponding variables
-// 		err := rows.Scan(&myPost.PostID, &myPost.Author, &myPost.Category, &myPost.Title, &myPost.Content, &myPost.PostTime)
-// 		if err != nil {
-// 			fmt.Println("error copying post data: ", err)
-// 		}
-
-// 		//aggregate all posts separated by '\n'
-// 		posts = append(posts, myPost)
-// 	}
-// 	rows.Close()
-
-// 	return posts
-// }
-
-// // To send all posts to front-end via http handle: "/getPosts"
-// func SendLatestPosts(w http.ResponseWriter, r *http.Request) {
-// 	//Send user information back to client using JSON format
-// 	posts := GetPosts()
-// 	js, err := json.Marshal(posts)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	w.WriteHeader(http.StatusOK) //Ceck in authentication.js, alerts user
-// 	w.Write([]byte(js))
-// }
-
-// func (p *Post) Modify(ck string) {
-// 	p.Cookie = ck
-// }
-
-// // GetUserByCookie ...
-// func GetUserByCookie(cookieValue string) *User {
-// 	var userID int64
-
-// 	if err := data.DB.QueryRow("SELECT userID from Sessions WHERE cookieValue = ?", cookieValue).Scan(&userID); err != nil {
-// 		fmt.Println("++++++++++++++++++++++++___________________________===", cookieValue)
-// 		return nil
-// 	}
-// 	u := FindByUserID(userID)
-// 	return u
-// }
-
-// // function for new user
-// func NewUser() *User {
-// 	return &User{}
-// }
-
-// // Find the user by their ID
-// func FindByUserID(UID int64) *User {
-// 	u := NewUser()
-// 	if err := data.DB.QueryRow("SELECT userID, firstName, lastName, nickName, age, gender, email, passwordhash FROM Users WHERE userID = ?", UID).
-// 		Scan(&u.UserID, &u.FirstName, &u.LastName, &u.NickName, &u.AboutMe, &u.Avatar, &u.Email); err != nil {
-// 		fmt.Println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++error FindByUserID: ", err)
-// 		return nil
-// 	}
-// 	return u
-// }
+func (data *DB) SendLatestPosts(w http.ResponseWriter, r *http.Request) {
+	SetUpCorsResponse(w)
+	// Send user information back to client using JSON format
+	posts := data.getLatestPosts()
+	// fmt.Println(userInfo)
+	js, err := json.Marshal(posts)
+	if err != nil {
+		log.Fatal(err)
+	}
+	w.WriteHeader(http.StatusOK) // Checked in authentication.js, alerts user
+	w.Write([]byte(js))
+}

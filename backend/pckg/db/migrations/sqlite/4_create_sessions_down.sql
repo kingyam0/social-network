@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS "Sessions"
+DROP TABLE Sessions

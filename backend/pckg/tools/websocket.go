@@ -13,16 +13,14 @@ import (
 )
 
 const (
-	writeWait      = 10 * time.Second    // Time allowed to write a message to the peer.
-	pongWait       = 60 * time.Second    // Time allowed to read the next pong message from the peer.
-	pingPeriod     = (pongWait * 9) / 10 // Send pings to peer with this period. Must be less than pongWait.
-	maxMessageSize = 512                 // Maximum message size allowed from peer.
+	maxMessageSize = 512 // Maximum message size allowed from peer.
 )
 
 var (
 	newline = []byte{'\n'}
 	space   = []byte{' '}
 )
+
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -45,9 +43,7 @@ func (c *Client) ReadPump() {
 		c.Hub.Unregister <- c
 		c.Conn.Close()
 	}()
-	c.Conn.SetReadLimit(maxMessageSize)
-	c.Conn.SetReadDeadline(time.Now().Add(pongWait))
-	c.Conn.SetPongHandler(func(string) error { c.Conn.SetReadDeadline(time.Now().Add(pongWait)); return nil })
+
 	for {
 		_, message, err := c.Conn.ReadMessage()
 		if err != nil {
@@ -67,15 +63,13 @@ func (c *Client) ReadPump() {
 /* ---- connection by executing all writes from this goroutine ---- */
 // Pumps messages from the hub to the websocket connection
 func (c *Client) WritePump() {
-	ticker := time.NewTicker(pingPeriod)
 	defer func() {
-		ticker.Stop()
 		c.Conn.Close()
 	}()
 	for {
 		select {
 		case message, ok := <-c.Send:
-			c.Conn.SetWriteDeadline(time.Now().Add(writeWait))
+
 			if !ok {
 				// The hub closed the channel
 				c.Conn.WriteMessage(websocket.CloseMessage, []byte{})
@@ -85,7 +79,7 @@ func (c *Client) WritePump() {
 			if err != nil {
 				return
 			}
-			// c.Conn.WriteJSON(message)
+
 			w.Write(message)
 			// Add queued chat messages to the current websocket message
 			n := len(c.Send)
@@ -96,17 +90,14 @@ func (c *Client) WritePump() {
 			if err := w.Close(); err != nil {
 				return
 			}
-		case <-ticker.C:
-			c.Conn.SetWriteDeadline(time.Now().Add(writeWait))
-			if err := c.Conn.WriteMessage(websocket.PingMessage, nil); err != nil {
-				return
-			}
 		}
 	}
 }
 
 // Handles websocket requests from the peer
 func (data *DB) ServeWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
+	SetUpCorsResponse(w)
+
 	upgrader.CheckOrigin = func(r *http.Request) bool { return true }
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -148,10 +139,13 @@ func NewHub(db *DB) *Hub {
 		Database:   db,
 	}
 }
+
 func (h *Hub) Run() {
 	for {
 		select {
 		case client := <-h.Register:
+			userData := h.Database.GetUserProfileByID(client.UserId)
+			fmt.Println("USERDATA: ", userData)
 			h.Clients[client.UserId] = client
 		case client := <-h.Unregister:
 			fmt.Println()
@@ -168,7 +162,7 @@ func (h *Hub) Run() {
 			}
 		case message := <-h.Broadcast:
 			msg_bytes := []byte(message)
-			msg := &Message{}
+			msg := &Message{} // need to create
 			err := json.Unmarshal(msg_bytes, msg)
 			// h.Database.GetNotifications(msg.MessageRecipient)
 			if err != nil {
@@ -182,6 +176,7 @@ func (h *Hub) Run() {
 		}
 	}
 }
+
 func (h *Hub) LogConns() {
 	for {
 		fmt.Println(len(h.Clients), "clients connected")

@@ -8,6 +8,7 @@ import (
 type DB struct {
 	DB *sql.DB
 }
+
 type RegisterData struct {
 	UserID    int
 	FirstName string `json:"FirstName"`
@@ -15,7 +16,7 @@ type RegisterData struct {
 	NickName  string `json:"NickName"`
 	DOB       string `json:"DOB"`
 	Email     string `json:"Email"`
-	Avatar	  string `json:"Avatar"`
+	Avatar    string `json:"Avatar"`
 	AboutMe   string `json:"AboutMe"`
 	Access    int    // 0 means no access, not logged in
 	LoggedIn  string
@@ -23,24 +24,28 @@ type RegisterData struct {
 	Comments  []Comments
 	Password  string `json:"PassWord"`
 }
+
 type User struct {
 	UserID    int
 	FirstName string `json:"FirstName"`
 	LastName  string `json:"LastName"`
 	NickName  string `json:"NickName"`
 	DOB       string `json:"DOB"`
-	Avatar	  string `json:"Avatar"`
+	Avatar    string `json:"Avatar"`
 	AboutMe   string `json:"AboutMe"`
 	Email     string `json:"Email"`
 	LoggedIn  string
+	Privacy   string `json:"Privacy"`
 }
+
 type UserProfile struct {
-	User User
-	// CreatedPosts  []Post
+	User         User
+	CreatedPosts []Post
 	// Hashtags      []Hashtag
 	// Notifications []Notifications
 	// Messages []Message
 }
+
 type GroupChat struct {
 	GroupID     int
 	GroupName   string    `json:"GroupName"`
@@ -48,10 +53,16 @@ type GroupChat struct {
 	Creator     string    // creator
 	CreatedTime time.Time `json:"CreatedTime"`
 }
+
 type LoginData struct {
 	UserName string `json:"Username"`
 	Password string `json:"Password"`
 	LoggedIn string
+}
+
+type UserActivity struct {
+	Online  []User
+	Offline []User
 }
 
 // each session contains the username of the user and the time at which it expires
@@ -61,31 +72,40 @@ type UserSession struct {
 	session  string
 	max_age  int
 }
+
 type Cookie struct {
 	Name    string
 	Value   string
 	Expires time.Time
 }
+
 type Comments struct {
 	CommentID      int
 	Author         string    `json:"Author"`
-	PostID         int       `json:"PstID"`
-	Content        string    `json:"CommContent"`
+	PostID         int       `json:"postId"`
+	Content        string    `json:"comContent"`
 	CommentTime    time.Time `json:"CommentTime"`
 	CommentTimeStr string
 }
+
 type Post struct {
-	PostID      int       `json:"PostID"`
-	Author      string    // author
-	Title       string    `json:"PostTitl"`
-	Content     string    `json:"PostCont"`
-	Category    string    `json:"PostCat"`
-	PostTime    time.Time `json:"PostTime"`
-	PostTimeStr string
-	Comments    []Comments
-	IPs         string
-	Public 		string
+	PostID       int       `json:"PostID"`
+	Author       string    // author
+	Title        string    `json:"PostTitle"`
+	Content      string    `json:"PostContent"`
+	Category     string    `json:"PostCategory"`
+	CreationDate time.Time `json:"PostTime"`
+	PhotoUp      string    `json:"ImageDataUrl"`
+	PostTimeStr  string
+	Comments     []Comments
+	IPs          string
+	Privacy      string `json:"PostPrivacy"`
 }
+
+type PostData struct {
+	post Post
+}
+
 type GroupPost struct {
 	GroupID     int       `json:"GroupID"`
 	GroupPostID int       `json:"GPostID"`
@@ -97,9 +117,9 @@ type GroupPost struct {
 	PostTimeStr string
 	Comments    []Comments
 	IPs         string
-	Public 		string
-
+	Public      string
 }
+
 type Message struct {
 	MessageID int
 	ChatID    int
@@ -111,8 +131,21 @@ type Message struct {
 	Date      time.Time `json:"date"`
 }
 
+type Chat struct {
+	MessageID        int    `json:"messageID"`
+	MessageSender    string `json:"messagesender"`
+	MessageRecipient string `json:"messagerecipient"`
+	Content          string `json:"content"`
+	CreatedAt        time.Time
+}
+
+type AllMessage struct {
+	SendersUsername    string `json:"sendersusername"`
+	RecipientsUsername string `json:"recipientsusername"`
+}
+
 type GroupMessage struct {
-	GroupID   int 
+	GroupID   int
 	MessageID int
 	ChatID    int
 	SenderID  string `json:"SenderID"`
@@ -123,17 +156,12 @@ type GroupMessage struct {
 	Date      time.Time `json:"date"`
 }
 
-type Chat struct {
-	ChatID int
-	User1  string
-	User2  string
-	Date   string
-}
 type ChatHistoryCheck struct {
 	ChatID     int
 	ChatExists bool
 	// ChatHistory []Message
 }
+
 type Notification struct {
 	NotificationID        int
 	NotificationSender    string `json:"notificationsender"`
@@ -141,7 +169,18 @@ type Notification struct {
 	NotificationCount     int    `json:"notificationcount"`
 	NotificationSeen      string `json:"notificationseen"`
 }
+
 type NotificationCheck struct {
 	NotificationID int
 	NotifExists    bool
+}
+
+type FollowRequest struct {
+	UserID       int `json:"userid"`
+	TargetUserID int `json:"targetuserid"`
+	RequestDate  time.Time
+}
+
+type CookieValue struct {
+	CookieValue string
 }

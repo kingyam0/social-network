@@ -1,0 +1,165 @@
+
+.profDiv{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    border-radius: 15px;
+    border: solid 10px;
+    border-color: #0e067c;
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 1em;
+    line-height: 4.3;
+    align-items: self-start;
+    padding-right: 0;
+    padding-left: 0;
+    width: 50%;    
+    margin-left: 24%;
+}
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 1em;
+    margin-top: -23.5%;
+    margin-left: 56%;
+    line-height: 4.3;
+    align-items: self-start;
+    position: fixed;
+    left: -3%;
+
+}
+  
+
+#wel{
+    margin-top: 2%;
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-weight: bolder;
+    border-radius: 25px;
+    display: flex;
+    padding: 1% 0% 0% 7%;
+    font-size: 2em;
+}
+
+#logout2{
+    top: 93%;
+    right: 68%;
+    width: 10.5%;
+    height: 4.7%;
+    background-color: #0e067c;
+    margin-right: 20%;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-size: 1.5em;
+    font-weight: bolder;
+    position: fixed;
+}
+
+#posts{
+    top: 5%;
+    right: 70%;
+    width: 8.5%;
+    height: 4.7%;
+    background-color: #0e067c;
+    margin-right: 20%;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-size: 1.5em;
+    font-weight: bolder;
+    position: fixed;
+}
+
+
+#firstNAME{
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 40%;
+}
+
+
+#infofirstName{
+    color: #0e067c;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 20%;
+}
+
+#lastNAME{
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 40%;
+}
+
+#infolastName{
+    color: #0e067c;
+
+    font-family: cursive;
+    font-weight: bolder;
+    width: 20%;
+}
+
+#nickNAME{
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 40%;
+}
+
+#infonickName{
+    color: #0e067c;
+
+    font-family: cursive;
+    font-weight: bolder;
+    width: 20%;
+}
+
+#aboutME{
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 40%;
+}
+
+#infoaboutMe{
+    color: #0e067c;
+    font-family: cursive;
+    font-weight: bolder;
+}
+
+#EMail{
+    background-color: #0e067c;
+    color: #f3f3f6;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 40%;
+}
+
+#infoEmail{
+    position: fixed;
+    color: #0e067c;
+    font-family: cursive;
+    font-weight: bolder;
+    width: 20%;
+    top: 76%;
+    left: 47%;
+}
+
+#ProfImage {
+    margin-top: 7.5%;
+    height: 20%;
+    width: 15%;
+    border: #0e067c solid 8px;
+    border-radius: 15px;
+}
