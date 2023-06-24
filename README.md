@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project aims to develop a social network application with various features such as user profiles, posts, groups, notifications, chat functionality, and a responsive front-end interface. The application will be built using HTML, CSS, React.
+This project aims to develop a social network application with various features such as user profiles, posts, groups, notifications, chat functionality, and a responsive front-end interface. The application will be built using Go for the backend, HTML, CSS and React for the frontend.
 
 ## Objectives
 
