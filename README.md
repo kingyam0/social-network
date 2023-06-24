@@ -2,13 +2,13 @@
 
 ## Overview
 
-This project aims to develop a social network application with various features such as user profiles, posts, groups, notifications, chat functionality, and a responsive front-end interface. The application will be built using HTML, CSS, JavaScript, and a suitable framework.
+This project aims to develop a social network application with various features such as user profiles, posts, groups, notifications, chat functionality, and a responsive front-end interface. The application will be built using HTML, CSS, React.
 
 ## Objectives
 
 The main objectives of this project are as follows:
 
-1. Implement the front-end interface using HTML, CSS, JavaScript, and a framework.
+1. Implement the front-end interface using HTML, CSS and React.
 2. Develop the back-end with three major components: server, app, and database.
 3. Create a database to store and persist data related to users, posts, groups, and notifications.
 4. Implement middleware for handling various functionalities, including authentication, image handling, websockets for real-time connections, and a web server for serving the application.
